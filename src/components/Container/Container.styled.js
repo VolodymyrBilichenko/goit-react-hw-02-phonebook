@@ -5,4 +5,5 @@ export const ContainerStyle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #333444;
 `
