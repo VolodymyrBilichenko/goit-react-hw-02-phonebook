@@ -1,9 +1,12 @@
 import { Container } from "./Container/Container";
+import { Section } from './Section/Section';
 
 export const App = () => {
   return (
     <Container>
-      React homework template
+      <Section title={'Phonebook'}>
+        
+      </Section>
     </Container>
   );
 };
