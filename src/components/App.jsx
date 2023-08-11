@@ -1,12 +1,24 @@
-import { Container } from "./Container/Container";
+import { Component } from 'react';
+import { Container } from './Container/Container';
 import { Section } from './Section/Section';
+import { Form } from './Form/Form';
 
-export const App = () => {
-  return (
-    <Container>
-      <Section title={'Phonebook'}>
-        
-      </Section>
-    </Container>
-  );
-};
+export class App extends Component {
+  state = {
+    contacts: [],
+  };
+
+  formAddHandler = data => {
+    console.log(data);
+  }
+
+  render() {
+    return (
+      <Container>
+        <Section title={'Phonebook'}>
+          <Form onSubmit={this.formAddHandler}/>
+        </Section>
+      </Container>
+    );
+  }
+}

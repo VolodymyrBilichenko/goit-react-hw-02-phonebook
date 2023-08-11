@@ -5,6 +5,7 @@ export const SectionStyle = styled.section`
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 45px;
         color: #EAEAEA;
+        text-align: center;
     }
 
     /* .title- */
