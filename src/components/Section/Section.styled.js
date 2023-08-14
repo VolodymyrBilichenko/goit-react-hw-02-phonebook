@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
 export const SectionStyle = styled.section`
+    width: 100%;
+    
     .title{
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 45px;
