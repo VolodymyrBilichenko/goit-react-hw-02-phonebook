@@ -11,8 +11,12 @@ export class App extends Component {
     contacts: contacts.contacts,
   };
 
-  formAddHandler = data => {
-    console.log(data);
+  formDeleteHandler = contactsId => {
+    this.setState({
+      contacts: this.state.contacts.filter(
+        contact => contact.id !== contactsId
+      ),
+    });
   };
 
   render() {
@@ -28,7 +32,10 @@ export class App extends Component {
         </Section>
 
         <Section title={'Contacts'}>
-          <Contacts contacts={this.state.contacts}/>
+          <Contacts
+            contacts={this.state.contacts}
+            formDeleteHandler={this.formDeleteHandler}
+          />
         </Section>
       </Container>
     );
