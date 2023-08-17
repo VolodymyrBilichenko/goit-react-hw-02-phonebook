@@ -19,6 +19,12 @@ export class App extends Component {
     });
   };
 
+  formAddHandler = newContact => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+    }));
+  };
+
   render() {
     console.log(this.state.contacts);
     return (

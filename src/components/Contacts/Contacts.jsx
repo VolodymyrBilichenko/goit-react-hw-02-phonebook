@@ -28,4 +28,5 @@ Contacts.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
+  formDeleteHandler: PropTypes.func.isRequired,
 };

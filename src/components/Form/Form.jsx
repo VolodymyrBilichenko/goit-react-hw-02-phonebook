@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { FormStyle } from './From.styled';
 import { FormLabel } from './FormLabel.styled';
+import { nanoid } from 'nanoid';
 
 export class Form extends Component {
   state = {
@@ -16,10 +17,16 @@ export class Form extends Component {
     });
   };
 
-  handleAdd = evt => {
+  formAddHandler = evt => {
     evt.preventDefault();
 
-    this.props.onSubmit(this.state);
+    const newContact = {
+      name: this.state.name,
+      number: this.state.number,
+      id: nanoid(),
+    };
+
+    this.props.onSubmit(newContact);
 
     this.reset();
   };
@@ -30,7 +37,7 @@ export class Form extends Component {
 
   render() {
     return (
-      <FormStyle onSubmit={this.handleAdd}>
+      <FormStyle onSubmit={this.formAddHandler}>
         <FormLabel>
           <label className="form__label" htmlFor="name">
             Name
