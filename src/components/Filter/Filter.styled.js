@@ -19,5 +19,11 @@ export const FilterStyle = styled.div`
         padding: 0 10px;
         font-size: 15px;
         font-family: Georgia, 'Times New Roman', Times, serif;
+
+        &::placeholder{
+            color: #EAEAEA;
+            font-size: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
     }
 `

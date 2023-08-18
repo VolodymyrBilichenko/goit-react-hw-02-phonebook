@@ -5,10 +5,16 @@ import { Form } from './Form/Form';
 import { Filter } from './Filter/Filter';
 import { Contacts } from './Contacts/Contacts';
 import contacts from './data/ContactsJson.json';
+import { EmptyContacts } from './EmptyContacts/EmptyContacts';
+
+function nothingFiltered(field, fieldValue) {
+  return field.toLowerCase().trim().includes(fieldValue.toLowerCase().trim());
+}
 
 export class App extends Component {
   state = {
     contacts: contacts.contacts,
+    filter: '',
   };
 
   formDeleteHandler = contactsId => {
@@ -25,23 +31,37 @@ export class App extends Component {
     }));
   };
 
+  onFilter = evt => {
+    this.setState({
+      filter: evt.target.value,
+    });
+  };
+
   render() {
-    console.log(this.state.contacts);
+    const filteredContacts = this.state.contacts.filter(
+      contact =>
+        nothingFiltered(contact.name, this.state.filter) ||
+        nothingFiltered(contact.number, this.state.filter)
+    );
     return (
       <Container>
         <Section title={'Phonebook'}>
-          <Form onSubmit={this.formAddHandler} />
+          <Form onSubmit={this.formAddHandler} contacts={this.state.contacts} />
         </Section>
 
         <Section title={'Filter'}>
-          <Filter />
+          <Filter onFilter={this.onFilter} filter={this.state.filter} />
         </Section>
 
         <Section title={'Contacts'}>
-          <Contacts
-            contacts={this.state.contacts}
-            formDeleteHandler={this.formDeleteHandler}
-          />
+          {filteredContacts.length === 0 ? (
+            <EmptyContacts />
+          ) : (
+            <Contacts
+              contacts={filteredContacts}
+              formDeleteHandler={this.formDeleteHandler}
+            />
+          )}
         </Section>
       </Container>
     );

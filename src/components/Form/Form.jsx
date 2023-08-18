@@ -21,14 +21,29 @@ export class Form extends Component {
     evt.preventDefault();
 
     const newContact = {
+      id: nanoid(),
       name: this.state.name,
       number: this.state.number,
-      id: nanoid(),
     };
 
-    this.props.onSubmit(newContact);
+    if (this.addedContact(newContact)) {
+      alert(
+        `Contact: ${this.state.name} is already in contacts, Number: ${this.state.number}`
+      );
+    } else {
+      this.props.onSubmit(newContact);
+    }
 
     this.reset();
+  };
+
+  addedContact = newContact => {
+    return this.props.contacts.some(
+      contact =>
+        contact.name.toLowerCase().trim() ===
+          newContact.name.toLowerCase().trim() ||
+        contact.number === newContact.number
+    );
   };
 
   reset = () => {
@@ -52,7 +67,7 @@ export class Form extends Component {
               required
             />
           </label>
-          <label className="form__label" htmlFor="name">
+          <label className="form__label" htmlFor="number">
             Number
             <input
               className="form__input"
