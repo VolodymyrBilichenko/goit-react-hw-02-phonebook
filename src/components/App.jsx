@@ -7,7 +7,7 @@ import { Contacts } from './Contacts/Contacts';
 import contacts from './data/ContactsJson.json';
 import { EmptyContacts } from './EmptyContacts/EmptyContacts';
 
-function nothingFiltered(field, fieldValue) {
+function filterByCriteria(field, fieldValue) {
   return field.toLowerCase().trim().includes(fieldValue.toLowerCase().trim());
 }
 
@@ -40,8 +40,8 @@ export class App extends Component {
   render() {
     const filteredContacts = this.state.contacts.filter(
       contact =>
-        nothingFiltered(contact.name, this.state.filter) ||
-        nothingFiltered(contact.number, this.state.filter)
+        filterByCriteria(contact.name, this.state.filter) ||
+        filterByCriteria(contact.number, this.state.filter)
     );
     return (
       <Container>
